@@ -34,10 +34,10 @@ docker rm csv_runner
 docker create -e CSVSERVER_BORDER="Orange"  -p 9393:9300  --name csv_run infracloudio/csvserver:latest
 
 #copying the inputFile to container to avoid the error 
-docker container cp inputFile csv_runner:/csvserver/inputdata
+docker container cp inputFile csv_run:/csvserver/inputdata
 
 #starting the container
-docker container start csv_runner
+docker container start csv_run
 
 #Successfully accessed the website with number entries and orange border
 
