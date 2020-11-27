@@ -1,8 +1,19 @@
 version: "3.8"
 services:
-  web:
+  prometheus:
+    image: prom/prometheus:v2.23.0
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus-2.23.0.linux-amd64:/etc/prometheus:z
+      - ./prometheus-2.23.0.linux-amd64:/prometheus:z
+    command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
+    depends_on:
+      - infracloudio
+  infracloudio:
     image: infracloudio/csvserver:latest
+    container_name: infracloudio
     ports:
       - "9393:9300"
     volumes:
-      - ./inputFile:/csvserver/inputdata
+      - ./csvserver/inputFile:/csvserver/inputdata
