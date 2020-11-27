@@ -3,7 +3,7 @@
 #Received following error 
 error while reading the file "/csvserver/inputdata": open /csvserver/inputdata: no such file or directory
 
-#created a shell script to create inputFile 
+#created a shell script to create inputFile in directory csvserver as it is reuirement for part 2 assignment
 #You need to pass one argument which describes about number of elements need to be generated and give all permissions to the file like read/write/delete
 chmod 777 gencsv.sh
 #For ex:if you want to generate 10 numbers you can pass 10 as argument 
@@ -40,5 +40,12 @@ docker container cp inputFile csv_runner:/csvserver/inputdata
 docker container start csv_runner
 
 #Successfully accessed the website with number entries and orange border
+
+#for part three assignment prerequisite is to having prometheus in ur machine
+wget https://github.com/prometheus/prometheus/releases/download/v2.23.0/prometheus-2.23.0.linux-amd64.tar.gz
+#after that unzipping that file 
+tar xvfz prometheus-2.23.0.linux-amd64.tar.gz
+#create a prometheus.yml file and copy it to  prometheus-2.23.0.linux-amd64
+cp prometheus.yml prometheus-2.23.0.linux-amd64/
 
 
